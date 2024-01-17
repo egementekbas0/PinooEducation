@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinoo Education</title>
+    <link rel="icon" type="image/x-icon" href="{% static '/assets/icon.ico' %}">
+    <link rel="stylesheet" href="{% static '/assets/libs/OwlCarousel-2/dist/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/dist/css/iconfont/tabler-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Header Start -->
+    <!------------------------------>
+    <header class="main-header position-fixed w-100">
+        <div class="container">
+            <nav class="navbar navbar-expand-x1 py-0">
+                <div class="logo">
+                    <a class="navbar-brand py-0 me-0" href="{% url 'home' %}"><img src="{% static '/assets/images/logo.png' %}" alt=""></a>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+    <!------------------------------>
+    <!-- Header End  -->
+    <!------------------------------>
+
+    <!------------------------------>
+    <!--- Service sectin Start------>
+    <!------------------------------>
+    
+    <section class="service position-relative overflow-hidden">
+        <div class="container">
+            {% for teacher in kidsicerik %}
+                {% if teacher.onaylimi %}
+                <div class="card3 1" style="position: relative;">
+                    {% if teacher.is_new %}
+                        <img class="resim" src="{% static '/assets/images/yeni.png' %}" style="position: absolute; top: 5px; left: 0px; width: 45px; height: 37px; z-index: 999;">
+                    {% endif %}
+                    <div class="content">
+                        <div class="imgBx">
+                            <a href="{% url 'kidsicerik' teacher.icerikanabaslik %}">
+                                <img src="{{ teacher.image.url }}" style="max-width: 300px; max-height: 300px; border-radius: 15px;">
+                            </a>
+                        </div>
+                        <div class="contentBx">
+                            <a href="{% url 'teachersicerik' teacher.icerikanabaslik %}"><h3>{{ teacher.icerikanabaslik }}</a><hr><span>{{ teacher.sinif }}</span><br><span>{{ teacher.derece }}</span></h3>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <!------------------------------>
+    <!--- Service sectin Start------>
+    <!------------------------------>
+
+    <!------------------------------>
+    <!-- Portfolio section Start---->
+    <!------------------------------>
+    <section class="portfolio position-relative bg-primary">
+        <div class="container">
+            {% for url in ogretmenicerik %}
+            <div class="pinoostudio">
+                <div class="text-center">
+                    <h2 class="fs-3 text-white mb-0">Pinoo Studio</h2>
+                    <a href="{{ url.pinoostudio }}" class="btn btn-warning2 btn-hover-secondery section-btn btn-sm">İndir</a>
+                </div>
+                <style>
+                    .urllogo{
+                        margin-top: 25px;
+                        margin-left: 75px;
+                    }
+                </style>
+                <div class="urllogo">
+                    <a href="{{ url.android }}"><img src="{% static 'assets/images/android.png' %}" height="30px" width="75px"></a>
+                    <a href="{{ url.windows }}"><img src="{% static 'assets/images/ios.png' %}" height="30px" width="75px"></a>
+                    <a href="{{ url.google }}"><img src="{% static 'assets/images/mac.png' %}" height="30px" width="75px"></a>
+                </div>
+            </div>
+            <style>.pinoocode{margin-bottom: 40px;}</style>
+            <div class="pinoocode">
+                <div class="text-center">
+                    <h2 class="basliks fs-3 text-white mb-0">Pinoo Code</h2>
+                    <a href="{{ url.pinoocode }}" class="btn btn-warning2 btn-hover-secondery section-btn btn-sm btn-center">Online Kodla!</a>
+                </div>
+            </div>
+            {% endfor %}
+            <style>
+                .chromebook {
+                color: white; /* Yazı rengini beyaz yapar */
+                font-weight: bold; /* Yazıyı biraz kalın yapar */
+                margin-top: 25px;
+                font-size: small;
+                }
+            </style>
+            <div class="chromebook"><pre>★ ChromeBook’lar için en uygun seçenek Pinoo Code (web) seçeneğidir.</pre></div>
+            <div class="row d-flex flex-wrap justify-content-center step-row">
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                                <span style='font: size 50px;'>&#x1F9E1;</span></div>
+                            <h3 class="fs-4 text-white">Her Yaştan Öğrenci</h3>
+                            <p class="fs-7 text-white">Pinoo ürünlerini 6+ herkesin kodlanmasına yardımcı olur.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon  mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                                <i class="ti ti-accessible text-white"></i></div>
+                            <h3 class="fs-4 text-white">Destek</h3>
+                            <p class="fs-7 text-white">Tüm platform ve işletim sistemlerine desteği vardır.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon mx-auto rounded-circle d-flex justify-content-center align-items-center"><i
+                                    class="ti ti-lock-open text-white"></i></div>
+                            <h3 class="fs-4 text-white">Ücretsiz</h3>
+                            <p class="fs-7 text-white">Ücret ödemeden programın tüm özelliklerini kullanabilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .card {
+            max-width: 400px; /* Örnek bir genişlik değeri, istediğiniz ölçüye göre ayarlayabilirsiniz */
+            margin: 0 auto; /* Kartları yatayda merkezlemek için */
+        }
+    </style>
+    <!------------------------------>
+    <!-----Footer Start------------->
+    <!------------------------------>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-logo-col">
+                        <a href="#"><img src="{% static '/assets/images/logo-footer.png' %}"></a>
+                        <p class="bs-black">Pinoo Atatürk’ün işaret ettiği pozitif bilimin ışığını dünyaya saçmayı
+                            hedefleyen bir Türk girişimidir.</p>
+                        <div class="callus text-white fw-500 fs-7">
+                            <div class="text-black">Tel: <a href="#" class="bs-black" style="text-decoration: none;">
+                                </a>0216 251 1664 - 0532 460 72 30</a></div>
+                            <a href="pinoo@atolyevizyon.com" style="text-decoration: none;"><i
+                                    class="ti ti-mail text-black"></i></a>
+                            <a href="https://www.instagram.com/pinoorobotics/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-instagram text-black"></i></a>
+                            <a href="https://tr.linkedin.com/company/pinoo-robotics-global"
+                                style="text-decoration: none;"><i class="ti ti-brand-linkedin text-black"></i></a>
+                            <a href="https://www.facebook.com/pinooroboticss/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-facebook text-black"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyrights text-center black  fw-500"><a>Designed with by <i
+                    class="ti ti-heart-handshake text-black"></i> Melikşah</a></div>
+        </div>
+        <style>.copy2 { text-align: center; font-size: smaller; margin-top: 10px;}</style>
+        <div class="copy2">Pinoo Bricky modellerin lisansı Pinoo Robotics’e aittir. Baskı alınıp kullanılabilir ancak değiştirilemez veya satışı yapılamaz.</div>
+        <div class="copy">LEGO®, LEGO® logosu, LEGO® Group'un tescilli ticari markasıdır ve bu siteyi desteklemez, onaylamaz veya yetkilendirmez . lego.com adresindeki resmi Lego web sitesini ziyaret edebilirsiniz.</div>
+    </footer>
+    <!------------------------------>
+    <!-------Footer End------------->
+    <!------------------------------>
+
+
+    <script src="{% static '/dist/js/jquery.min.js' %}"></script>
+    <script src="{% static '/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/libs/OwlCarousel-2/dist/owl.carousel.min.js' %}"></script>
+    <script src="{% static '/dist/js/custom.js' %}"></script>
+
+</body>
+
+</html>

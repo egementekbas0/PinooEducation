@@ -1,0 +1,720 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinoo Education</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/icon.ico' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/OwlCarousel-2/dist/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/iconfont/tabler-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/style.css' %}"> 
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Header Start -->
+    <!------------------------------>
+    <button class="back-button" id="back-button">
+            <i class="fa-solid fa-angle-left" style="color: #90c340; font-size: 40px;"></i>
+        </button>
+        <script>
+        // Önceki sayfaya gitmek için JavaScript kodu
+            document.getElementById("back-button").addEventListener("click", function() {
+            history.back(); // Tarayıcı geçmişini kullanarak önceki sayfaya git
+            });
+        </script>
+    <header class="main-header position-fixed w-100">
+        <div class="container">
+            <nav class="navbar navbar-expand-x1 py-0">
+                <div class="logo">
+                    <a class="navbar-brand py-0 me-0" href="{% url 'home' %}"><img src="{% static '/assets/images/logo.png' %}" alt=""></a>
+                </div>
+            </nav>
+        </div>
+ </header>
+
+    <!------------------------------>
+    <!------ FAQ section Start------>
+    <!------------------------------>
+    <section class="footer">
+        {% for teacher in ticerik %}
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-md-12 col-xl-12 order-md-1">
+                    <main>
+                        <article>
+                            <h2>{{ teacher.icerikanabaslik }}</h2>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">&#127979;: {{ teacher.sinif }}</li>
+                                <li class="list-inline-item">&#8986;: {{ teacher.sure }} dk</li>
+                                <li class="list-inline-item">Zorluk seviyesi: {{ teacher.derece }}</li>
+                                <!-- <li class="list-inline-item"> <a href="https://www.youtube.com" download> &#128424; Yazdır</a></li> -->
+                                <!-- <li class="list-inline-item"><a href="https://www.youtube.com" download> &#128279; Paylaş</a></li> -->
+
+                            </ul>
+                        </article>  
+                        <hr size="3"   color="green"> <!-- Çizgi ekleyelim -->
+                    </main>
+                </div>  
+                <div class="col-md-12 col-xl-5 order-1 order-md-2">
+                    <div class="video-container" id="video">
+                        <video controls style="width: 100%; height: auto;">
+                            <source src="{{ teacher.video.url }}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="accordion" id="accordion1">
+                        <div class="accordion-header" id="panelsStayOpen-heading1">
+                            <button class="accordion-button text-black fs-7 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse1">
+                                Uyumlu Pinoo Kartlar Ve Lego Setleri
+                            </button>
+                            <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse hiding"
+                                aria-labelledby="panelsStayOpen-heading1">
+                                <div class="accordion-body fs-7 fw-500 pt-0">
+                                <ul> {{ teacher.uyumlupinooveset|safe }} </ul>
+                                    <!-- </li> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordion2">
+                            <div class="accordion-header" id="panelsStayOpen-heading2">
+                                <button class="accordion-button text-black fs-7 collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapse2">
+                                    Gerekli Materyaller
+                                </button>
+                            </div>
+                            <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse hiding"
+                                aria-labelledby="panelsStayOpen-heading2">
+                                <div class="accordion-body fs-7 fw-500 pt-0">
+                                    <ul>{{ teacher.gereklimateryal|safe }}</ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion" id="accordion3">
+                            <div class="accordion-header" id="panelsStayOpen-heading3">
+                                <button class="accordion-button text-black fs-7 collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapse3" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapse3">
+                                    Ek Kaynaklar
+                                </button>
+                            </div>
+                            <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse hiding"
+                                aria-labelledby="panelsStayOpen-heading3">
+                                <div class="accordion-body fs-7 fw-500 pt-0">
+                                    <ul>{{ teacher.ekkaynak|safe }}</ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-7 order-1 order-md-2">
+                    <!-- <div class="container"> -->
+                        <div id="guide-image-section">
+                          </div>
+
+                <div class="modal fade" id="guide-imageModal" tabindex="-1" role="dialog" aria-labelledby="guide-imageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered guide-modal-dialog ">
+                      <div class="modal-content">
+                        <div class="modal-body p-0">
+                          <button type="button" class="guide-close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark fa-2xl"></i>
+                          </button>
+                          <div id="guide-image-slider" class="carousel guide-carousel" data-interval="false">
+                            <div class="carousel-inner guide-carousel-inner">
+                              <!-- Resimler burada dinamik olarak oluşturulacak -->
+                            </div>
+                            <a class="carousel-control-prev" href="#guide-image-slider" role="button" data-slide="prev">
+                              <i class="fa-solid fa-angles-left fa-3x" style="color: black; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);"></i>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#guide-image-slider" role="button" data-slide="next">
+                              <i class="fa-solid fa-angles-right fa-3x" style="color: black; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);"></i>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br> 
+                  
+                  <ul>
+                    <dt>{{ teacher.icerikbaslik }}</dt>
+                    {{ teacher.icerikyazi|safe }}
+                            
+                </ul>
+                <!-- </div> -->
+                <hr size="4"   color="green"> <!-- Çizgi ekleyelim -->
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik2 }}</dt>(Tüm Sınıf, 5-10 Dakika)
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi2|safe }}</p>
+                </ul>
+
+                <hr size="4"   color="green"> <!-- Çizgi ekleyelim -->
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik3 }}</dt>(Tüm Sınıf, 5-10 Dakika)
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi3|safe }}</p>
+                </ul>
+
+                <hr size="4"   color="green"> <!-- Çizgi ekleyelim -->
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik4 }}</dt>(Tüm Sınıf, 25-30 Dakika)
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi4|safe }}</p>
+                    
+                    
+                    <dt><li>Tasarım rehberini açmak için resme tıklayabilirsin.</li>
+                        <li>Sağ ve sol ok butonları ile veya klavyedeki oklar ile rehberi takip edebilirsin.</li>
+                        <li>Çıkış için klavydedeki 'ESC' tuşunu kullanabilirsin.</li></dt>
+                        
+
+
+
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                        <style>
+                            .gallery-container {
+                                cursor: pointer;
+                            }
+                        
+                            .lightbox {
+                                display: none;
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(0, 0, 0, 0.8);
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        
+                            .lightbox img {
+                                max-width: 80%;
+                                max-height: 80%;
+                                margin: auto;
+                                display: block;
+                            }
+                        
+                            .lightbox .close {
+                                position: absolute;
+                                top: 15px;
+                                right: 15px;
+                                color: #fff;
+                                font-size: 24px;
+                                cursor: pointer;
+                            }
+                        
+                            .lightbox .prev,
+                            .lightbox .next {
+                                position: absolute;
+                                top: 50%;
+                                font-size: 30px;
+                                color: white;
+                                cursor: pointer;
+                                transform: translateY(-50%);
+                            }
+                        
+                            .lightbox .prev { left: 15px; }
+                            .lightbox .next { right: 15px; }
+                        </style>
+                        
+                        <div class="gallery-container" onclick="openLightbox()">
+                            <img src="{% static '' %}{{ image_data.0.images.0 }}" style="height: 400px;" width="700px" alt="Resim">
+                        </div>
+                        
+                        <div class="lightbox" id="lightbox">
+                            <span class="close" onclick="closeLightbox()">&times;</span>
+                            <img src="{% static '' %}{{ image_data.0.images.0 }}" alt="Lightbox Image" id="lightbox-image">
+                            <span class="prev" onclick="showPrevImage()">&#10094;</span>
+                            <span class="next" onclick="showNextImage()">&#10095;</span>
+                        </div>
+                        
+                        <script>
+                            let currentIndex = 0;
+                            const images = [
+                                {% for image in image_data.0.images %}
+                                    "{% static '' %}{{ image }}",
+                                {% endfor %}
+                            ];
+                        
+                            // images dizisini sırala
+                            images.sort();
+                        
+                            let scrollPosition = 0;
+                        
+                            // Kapak görseli zip dosyasındaki ilk görsel olacak şekilde güncelleme
+                            const coverImage = images.length > 0 ? images[0] : '';
+                            const lightboxImage = document.getElementById('lightbox-image');
+                            lightboxImage.src = coverImage;
+                        
+                            function openLightbox(event) {
+                                const lightbox = document.getElementById('lightbox');
+                                const lightboxImage = document.getElementById('lightbox-image');
+                                const mainHeader = document.querySelector('.main-header');
+                                const body = document.body;
+
+                                scrollPosition = window.pageYOffset;
+
+                                body.style.overflow = 'hidden';
+                                body.style.position = 'fixed';
+                                body.style.width = '100%';
+
+                                // Gizle main-header
+                                if (mainHeader) {
+                                    mainHeader.style.display = 'none';
+                                }
+
+                                lightboxImage.src = images[currentIndex];
+                                lightbox.style.display = 'flex';
+
+                                document.addEventListener('keydown', handleKeyPress);
+
+                                event.preventDefault();
+                            }
+
+                            function closeLightbox() {
+                                const lightbox = document.getElementById('lightbox');
+                                const lightboxImage = document.getElementById('lightbox-image');
+                                const mainHeader = document.querySelector('.main-header');
+                                const body = document.body;
+
+                                lightbox.style.display = 'none';
+
+                                body.style.overflow = 'visible';
+                                body.style.position = 'static';
+                                body.style.width = 'auto';
+
+                                window.scrollTo(0, scrollPosition);
+
+                                
+                                if (mainHeader) {
+                                    mainHeader.style.display = 'block';
+                                }
+
+                                document.removeEventListener('keydown', handleKeyPress);
+                            }
+                        
+                            function handleKeyPress(e) {
+                                if (e.key === 'Escape') {
+                                    closeLightbox();
+                                } else if (e.key === 'ArrowRight') {
+                                    showNextImage();
+                                } else if (e.key === 'ArrowLeft') {
+                                    showPrevImage();
+                                }
+                            }
+                        
+                            function showNextImage() {
+                                currentIndex = (currentIndex + 1) % images.length;
+                                updateLightboxImage();
+                            }
+                        
+                            function showPrevImage() {
+                                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                                updateLightboxImage();
+                            }
+                        
+                            function updateLightboxImage() {
+                                const lightboxImage = document.getElementById('lightbox-image');
+                                lightboxImage.src = images[currentIndex];
+                            }
+                        </script>
+
+
+
+                     <!--<img class="guide-thumbnail" src="{{ teacher.tasarimrehberkapak.url }}" alt="Thumbnail 1" data-toggle="modal" data-target="#guide-imageModal">-->
+                </ul>
+                
+                <hr size="4"   color="green"> <!-- Çizgi ekleyelim -->
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik5 }}</dt>(Tüm Sınıf, 20-30 Dakika)
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi5|safe }}</p> 
+                </ul>
+
+                <hr size="4"  color="green">
+
+                <ul>
+                    
+                    <dt><li>Pinoo'yu kodlama ipuçları için sağ ve soldaki butonlar ile veya klavyedeki oklar ile ipuçlarını değiştirebilirsin.</li></dt>
+                    <div id="guide-image-slider2" class="carousel guide-carousel" data-interval="false">
+                        <div id="guide-image-slider2" class="carousel guide-carousel" data-interval="false">
+                            
+                            
+                            
+                            
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                            <style>
+                                .gallery-container-custom {
+                                    cursor: pointer;
+                                }
+                            
+                                .lightbox-custom {
+                                    display: none;
+                                    position: fixed;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: rgba(0, 0, 0, 0.8);
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            
+                                .lightbox-custom img {
+                                    max-width: 80%;
+                                    max-height: 80%;
+                                    margin: auto;
+                                    display: block;
+                                }
+                            
+                                .lightbox-custom .close {
+                                    position: absolute;
+                                    top: 15px;
+                                    right: 15px;
+                                    color: #fff;
+                                    font-size: 24px;
+                                    cursor: pointer;
+                                }
+                            
+                                .lightbox-custom .prev,
+                                .lightbox-custom .next {
+                                    position: absolute;
+                                    top: 50%;
+                                    font-size: 30px;
+                                    color: white;
+                                    cursor: pointer;
+                                    transform: translateY(-50%);
+                                }
+                            
+                                .lightbox-custom .prev { left: 15px; }
+                                .lightbox-custom .next { right: 15px; }
+                            </style>
+                            
+                            <div class="gallery-container-custom" onclick="displayFancyImage()">
+                                <img src="{% static '' %}{{ custom_data.0.custom_images.0 }}" alt="Kapak Resmi" class="kapak-resim" style="height: 400px;" width="700px">
+                            </div>
+                            
+                            <div class="lightbox-custom" id="fancy-lightbox">
+                                <span class="close" onclick="hideFancyImage()">&times;</span>
+                                <img src="{% static '' %}{{ custom_data.0.custom_images.0 }}" alt="Fancy Image" id="fancy-image">
+                                <span class="prev" onclick="showPreviousFancyImage()">&#10094;</span>
+                                <span class="next" onclick="showNextFancyImage()">&#10095;</span>
+                            </div>
+                        
+
+                            
+                            <script>
+                                let currentFancyIndex = 0;
+                                const fancyImages = [
+                                    {% for custom_image in custom_data.0.custom_images %}
+                                        "{% static '' %}{{ custom_image }}",
+                                    {% endfor %}
+                                ];
+
+                                // currentFancyIndex'i 0 olarak ayarlayarak ilk görüntünün başlangıçta görüntülenmesini sağla
+                                currentFancyIndex = 0;
+
+                                let fancyScrollPosition = 0;
+                                let fancyLightboxVisible = false;
+
+                                function displayFancyImage(event) {
+                                    const fancyLightbox = document.getElementById('fancy-lightbox');
+                                    const fancyImage = document.getElementById('fancy-image');
+                                    const body = document.body;
+                                    const mainHeader = document.querySelector('.main-header');
+
+                                    fancyScrollPosition = window.pageYOffset;
+
+                                    body.style.overflow = 'hidden';
+                                    body.style.position = 'fixed';
+                                    body.style.width = '100%';
+
+                                    fancyImage.src = fancyImages[currentFancyIndex];
+                                    fancyLightbox.style.display = 'flex';
+                                    fancyLightboxVisible = true;
+
+                                    mainHeader.style.display = 'none'; // main-header'ı gizle
+
+                                    document.addEventListener('keydown', handleFancyKeyPress);
+
+                                    event.preventDefault();
+                                }
+
+                                function hideFancyImage() {
+                                    const fancyLightbox = document.getElementById('fancy-lightbox');
+                                    const body = document.body;
+                                    const mainHeader = document.querySelector('.main-header');
+
+                                    fancyLightbox.style.display = 'none';
+
+                                    body.style.overflow = 'visible';
+                                    body.style.position = 'static';
+                                    body.style.width = 'auto';
+
+                                    window.scrollTo(0, fancyScrollPosition);
+
+                                    document.removeEventListener('keydown', handleFancyKeyPress);
+                                    fancyLightboxVisible = false;
+
+                                    mainHeader.style.display = 'block'; // main-header'ı tekrar göster
+                                }
+                            
+                            
+                                function handleFancyKeyPress(e) {
+                                    if (e.key === 'Escape') {
+                                        hideFancyImage();
+                                    } else if (e.key === 'ArrowRight') {
+                                        showNextFancyImage();
+                                    } else if (e.key === 'ArrowLeft') {
+                                        showPreviousFancyImage();
+                                    }
+                                }
+                            
+                                function showNextFancyImage() {
+                                    currentFancyIndex = (currentFancyIndex + 1) % fancyImages.length;
+                                    updateFancyImage();
+                                }
+                            
+                                function showPreviousFancyImage() {
+                                    currentFancyIndex = (currentFancyIndex - 1 + fancyImages.length) % fancyImages.length;
+                                    updateFancyImage();
+                                }
+                            
+                                function updateFancyImage() {
+                                    const fancyImage = document.getElementById('fancy-image');
+                                    fancyImage.src = fancyImages[currentFancyIndex];
+                                }
+                            </script>
+                        
+                </ul>
+            
+
+                <hr size="4"   color="green"> 
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik6 }}</dt>
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi6|safe }}</p>
+                </ul>
+                
+                <hr size="4"   color="green">
+
+                <ul>
+                    <dt>{{ teacher.icerikbaslik7 }}</dt> (Eklentileri yaparsanız dersiniz 2 ders saatinden fazla olabilir.)
+                    <p style="font-family: Arial, Helvetica, sans-serif;">{{ teacher.icerikyazi7|safe }}</p>
+                </ul>
+                                       
+                <hr size="4"   color="green">
+
+                <ul>
+                    <dt>Değerlendirme</dt> (Ders Boyunca)
+                    <li>Öğrencilerinizi “sesli düşünmeye” ve modellerini inşa ederken ve programlarken aldıkları kararların arkasındaki
+                     düşünce süreçlerini ve akıl yürütmelerini açıklamaya teşvik etmek için planda belirtilenler dışında da yol gösterici 
+                     sorular sorun.</li>
+
+                    <hr size="4"   color="green"> 
+                     
+                     <dt>Gözlem Kontrol Listesi</dt>
+                     <li>Öğrencilerinizin, Mesafe sensörünün çalışma prensibini anlayıp anlamadığını test edin.</li>
+                     <li>Öğrencilerinizin, bir LED’lerin aldığı değerlerin bilgisayar dili ile örtüştüğünü açıklayabilme yeterliliğini ölçün.</li>
+                     <li>İhtiyaçlarınızı karşılayan bir ölçek oluşturun. Örneğin:
+                        <ol>
+                            <li>Ek desteğe ihtiyacı var.</li>
+                            <li>Bağımsız çalışabilir.</li>
+                            <li>Akranlarına öğretebilir.</li>
+                            <li>Bu projeyi sunabilir.</li>
+                        </ol>
+                     </li>
+
+                    <hr size="4"   color="green">
+
+                     <dt>Öz Değerlendirme Formu</dt>
+                    Akran Geri Bildirimi<br><br>
+                    <li>Öğrencilerin kendi küçük gruplarında birlikte çalışma deneyimleri hakkında tartışma yapmalarını teşvik edin. 
+                    Tartışma sırasında aşağıdaki gibi ifadeleri kullanmaya teşvik edebilirsiniz:</li>
+                    <ol>
+                    <li>Olumlu Geri Bildirim Verme:
+                        <ul>
+                            <li>"Şöyle şöyle yapmanızı beğendim."</li>
+                            <li>"Bu konuda çok başarılıydınız."</li>
+                            <li>"Harika bir iş çıkardınız."</li>
+                        </ul>
+                    </li>
+                    <li>Merak Edilen Konuları İfade Etme:
+                        <ul>
+                            <li>"Şunu nasıl başardınız? Öğrenmek istiyorum."</li>
+                            <li>"Bu konuda daha fazla bilgi alabilir miyim?"</li>
+                            <li>"Nasıl bu kadar yaratıcı oldunuz?"</li>
+                        </ul>
+                    </li>
+                    </ol>
+                    Bu düzenleme, öğrencilerin grup içi tartışmalarda daha yapıcı ve olumlu bir dil kullanmalarına yardımcı olabilir.
+                </ul>
+            </div>
+            {% endfor %}       
+    </section>
+    <!------------------------------>
+    <!------ FAQ section End------>
+    <!------------------------------>
+    <!------------------------------>
+    <!-----Footer Start------------->
+    <!------------------------------>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-logo-col">
+                        <a href="#"><img src="{% static 'assets/images/logo-footer.png' %}"></a>
+                        <p class="bs-black">Pinoo Atatürk’ün işaret ettiği pozitif bilimin ışığını dünyaya saçmayı
+                            hedefleyen bir Türk girişimidir.</p>
+                        <div class="callus text-white fw-500 fs-7">
+                            <div class="text-black">Tel: <a href="#" class="bs-black" style="text-decoration: none;">
+                                </a>0216 251 1664 - 0532 460 72 30</a></div>
+                            <a href="pinoo@atolyevizyon.com" style="text-decoration: none;"><i
+                                    class="ti ti-mail text-black"></i></a>
+                            <a href="https://www.instagram.com/pinoorobotics/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-instagram text-black"></i></a>
+                            <a href="https://tr.linkedin.com/company/pinoo-robotics-global"
+                                style="text-decoration: none;"><i class="ti ti-brand-linkedin text-black"></i></a>
+                            <a href="https://www.facebook.com/pinooroboticss/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-facebook text-black"></i></a>
+
+                        </div>
+                    </div>
+                    <!-- <h5 class="text-black">Bizi Takip Edin</h5> -->
+                    <!-- <li class="list-unstyled mb-0 pl-0"> -->
+
+                </div>
+                <!-- <div class="col-xxl-4 col-xl-2 col-lg-2 col-md-12 col-sm-12"> -->
+
+
+                <!-- </li> -->
+            </div>
+        </div>
+        <div class="copyrights text-center black  fw-500"><a>Designed with by <i
+                    class="ti ti-heart-handshake text-black"></i> Melikşah</a></div>
+        </div>
+        <style>.copy2 { text-align: center; font-size: smaller; margin-top: 10px;}</style>
+        <div class="copy2">Pinoo Bricky modellerin lisansı Pinoo Robotics’e aittir. Baskı alınıp kullanılabilir ancak değiştirilemez veya satışı yapılamaz.</div>
+        <div class="copy">LEGO®, LEGO® logosu, LEGO® Group'un tescilli ticari markasıdır ve bu siteyi desteklemez, onaylamaz veya yetkilendirmez . lego.com adresindeki resmi Lego web sitesini ziyaret edebilirsiniz.</div>
+    </footer>
+    <!------------------------------>
+    <!-------Footer End------------->
+    <!------------------------------>
+
+
+    <script src="{% static 'dist/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/libs/OwlCarousel-2/dist/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'dist/js/custom.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Resimlerin dinamik olarak eklenmesi
+      var imageCount = 39; // Toplam resim sayısı
+      var imageSlider = document.getElementById('guide-image-slider');
+      var carouselInner = imageSlider.querySelector('.carousel-inner');
+  
+      for (var i = 0; i < imageCount; i++) {
+        var imageIndex = i.toString().padStart(3, '0'); // 0'dan başlayan numaralandırma
+        var imageSrc = '../../assets/bricky/AkilliBuzdolabi/AkilliBuzdolabi_' + imageIndex + '.jpg'; // Resim dosya yolu
+        var carouselItem = document.createElement('div');
+        carouselItem.className = (i === 0) ? 'carousel-item active' : 'carousel-item';
+  
+        var image = document.createElement('img');
+        image.className = 'd-block w-100';
+        image.src = imageSrc;
+        image.alt = 'Image ' + (i + 1);
+  
+        carouselItem.appendChild(image);
+        carouselInner.appendChild(carouselItem);
+      }
+
+
+      var imageCount = 27; // Toplam resim sayısı
+      var imageSlider = document.getElementById('guide-image-slider2');
+      var carouselInner = imageSlider.querySelector('.carousel-inner');
+  
+      for (var i = 0; i < imageCount; i++) {
+        var imageIndex = i.toString().padStart(3, '0'); // 0'dan başlayan numaralandırma
+        var imageSrc = '../../assets/bricky/AkilliBuzdolabi/AkilliBuzdolabiKod_' + imageIndex + '.png'; // Resim dosya yolu
+        var carouselItem = document.createElement('div');
+        carouselItem.className = (i === 0) ? 'carousel-item active' : 'carousel-item';
+  
+        var image = document.createElement('img');
+        image.className = 'd-block w-100';
+        image.src = imageSrc;
+        image.alt = 'Image ' + (i + 1);
+  
+        carouselItem.appendChild(image);
+        carouselInner.appendChild(carouselItem);
+      }
+      
+      // Klavye oklarını kullanarak slayt değiştirme işlevi ekleyelim
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') {
+          $('#guide-image-slider').carousel('next');
+        } else if (event.key === 'ArrowLeft') {
+          $('#guide-image-slider').carousel('prev');
+        }
+      });
+
+
+            // Header elementini seçin
+            var header = document.querySelector('.main-header');
+
+// Slayt açıldığında header'ı gizlemek için bir işlev
+function hideHeader() {
+header.style.display = 'none'; // Header'ı gizle
+}
+
+// Slayt kapatıldığında header'ı göstermek için bir işlev
+function showHeader() {
+header.style.display = 'block'; // Header'ı göster
+}
+
+// Slayt açma düğmesine tıklanırsa header'ı gizle
+document.querySelector('[data-toggle="modal"]').addEventListener('click', hideHeader);
+
+// Slayt kapatma düğmesine tıklanırsa header'ı göster
+document.querySelector('[data-dismiss="modal"]').addEventListener('click', showHeader);
+
+
+var lastScrollTop = 0; // Son kaydırma konumu
+
+// Header elementini seçin
+var header = document.querySelector('.main-header');
+
+// Kaydırma olayını dinleyin
+window.addEventListener('scroll', function() {
+var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+// Kullanıcı aşağı kaydırıyorsa ve header görünüyorsa, header'ı gizleyin
+if (scrollTop > lastScrollTop && header.style.display !== 'none') {
+    header.style.display = 'none';
+} 
+// Kullanıcı yukarı kaydırıyorsa, header'ı gösterin
+else if (scrollTop < lastScrollTop || scrollTop === 0) {
+    header.style.display = 'block';
+}
+
+lastScrollTop = scrollTop; // Son kaydırma konumunu güncelle
+});
+
+ </script>
+</body>
+
+</html>

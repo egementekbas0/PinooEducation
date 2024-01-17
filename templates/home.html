@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>    
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinoo Education</title>
+    
+    
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/icon.ico' %}">
+    <link rel="stylesheet" href="{% static 'assets/libs/OwlCarousel-2/dist/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/iconfont/tabler-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>    
+    <!------------------------------>
+    <!-- Header Start -->
+    <!------------------------------>
+    <header class="main-header position-fixed w-100">
+        <div class="container">
+            <nav class="navbar navbar-expand-x1 py-0">  
+                <div class="logo">
+                    <a class="navbar-brand py-0 me-0" href=""><img src="{% static 'assets/images/logo.png' %}" alt=""></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    
+    <!------------------------------>
+    <!-- Header End  -->
+    <!------------------------------>
+    <!------------------------------>
+    <!--- Hero Banner Start--------->
+    <!------------------------------>
+
+    <section class="hero-banner position-relative overflow-hidden">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="position-relative left-hero-color">
+                        <h1 class="mb-0 fw-bold">
+                            Tasarımı seç + <span style='font: size 50px;'>&#x1F498;</span> Pinoo'la
+                        </h1>
+                        <p>Sen tasarım gücünü seç, Pinoo onu harekete geçirsin. </p>
+                        <button type="button" class="btn btn-warning btn-hover-secondery" data-toggle="modal" data-target="#videoModal">
+                            <span class="d-inline-block me-2"><i class="ti ti-playstation-triangle"></i></span>Pinoo'yu Keşfet
+                          </button>
+                          
+
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="position-relative right-hero-color">
+                        <img src="{% static 'assets/images/hero/right-image2.png' %}" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal2-content">
+            <div class="modal-body">
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/h8bKxMxL4jk" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!------------------------------>
+    <!--- Hero Banner End--------->
+    <!------------------------------>
+
+    <!------------------------------>
+    <!--- Service sectin Start------>
+    <!------------------------------>
+    <section class="service position-relative overflow-hidden">
+        <div class="cards-list2">
+
+            <div class="card2 1">
+                <div class="card_image2" ><a class="card_image2" id="open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img
+                            src="https://cdn.dribbble.com/users/1008377/screenshots/3435889/lego.gif" />
+                </div>
+                <div class="card_title2 title-white2">
+                    <p2> <a id="open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal" href="./pinoo-bricky.html" style="text-decoration: none;">Bricky/Lego ile Pinoo</a></p2>
+                </div>
+            </div>
+
+            <div class="card2 2">
+                <div class="card_image2"><a class="card_image2" id="open-modal" data-bs-toggle="modal" data-bs-target="#soonModal">
+                        <img
+                        
+                            src="https://media.tenor.com/nAwlEW7XG8sAAAAC/prusa-i3mk3.gif" />
+                </div>
+                <div class="card_title2 title-white2">
+                    <p2><a style="text-decoration: none;"></a>3B Baskılar ile Pinoo</p2>
+                </div>
+            </div>
+
+            <div class="card2 3">
+                <div class="card_image2"><a class="card_image2" id="open-modal" data-bs-toggle="modal" data-bs-target="#soonModal">
+                        <img src="https://mitadmissions.org/wp-content/uploads/2019/03/AffectionateRawIguanodon-small.gif" />
+                </div>
+                <div class="card_title2 title-black2">
+                    <p2><a style="text-decoration: none;"></a> Sarf ve Geri Dönüşüm İle Pinoo</p2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .card {
+            max-width: 400px; /* Örnek bir genişlik değeri, istediğiniz ölçüye göre ayarlayabilirsiniz */
+            margin: 0 auto; /* Kartları yatayda merkezlemek için */
+        }
+    </style>
+    <!------------------------------>
+    <!--- Service sectin Start------>
+    <!------------------------------>
+
+    
+
+    <!------------------------------>
+    <!-- Portfolio section Start---->
+    <!------------------------------>
+    <section class="portfolio position-relative bg-primary">
+        <div class="container">
+            {% for url in icerik %}
+            <div class="pinoostudio">
+                <div class="text-center">
+                    <h2 class="fs-3 text-white mb-0">Pinoo Studio</h2>
+                    <a href="{{ url.pinoostudio }}" class="btn btn-warning2 btn-hover-secondery section-btn btn-sm">İndir</a>
+                </div>
+                <style>
+                    .urllogo{
+                        margin-top: 25px;
+                        margin-left: 75px;
+                    }
+                </style>
+                <div class="urllogo">
+                    <a href="{{ url.android }}"><img src="{% static 'assets/images/android.png' %}" height="30px" width="75px"></a>
+                    <a href="{{ url.windows }}"><img src="{% static 'assets/images/ios.png' %}" height="30px" width="75px"></a>
+                    <a href="{{ url.google }}"><img src="{% static 'assets/images/mac.png' %}" height="30px" width="75px"></a>
+                </div>
+            </div>
+            <style>.pinoocode{margin-bottom: 40px;}</style>
+            <div class="pinoocode">
+                <div class="text-center">
+                    <h2 class="basliks fs-3 text-white mb-0">Pinoo Code</h2>
+                    <a href="{{ url.pinoocode }}" class="btn btn-warning2 btn-hover-secondery section-btn btn-sm btn-center">Online Kodla!</a>
+                </div>
+            </div>
+            {% endfor %}
+            <style>
+                .chromebook {
+                color: white; /* Yazı rengini beyaz yapar */
+                font-weight: bold; /* Yazıyı biraz kalın yapar */
+                margin-top: 50px;
+                font-size: small;
+                }
+            </style>
+            <div class="chromebook"><pre>★ ChromeBook’lar için en uygun seçenek Pinoo Code (web) seçeneğidir.</pre></div>
+            <div class="row d-flex flex-wrap justify-content-center step-row">
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                                <span style='font: size 50px;'>&#x1F9E1;</span></div>
+                            <h3 class="fs-4 text-white">Her Yaştan Öğrenci</h3>
+                            <p class="fs-7 text-white">Pinoo ürünlerini 6+ herkesin kodlanmasına yardımcı olur.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon  mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                                <i class="ti ti-accessible text-white"></i></div>
+                            <h3 class="fs-4 text-white">Destek</h3>
+                            <p class="fs-7 text-white">Tüm platform ve işletim sistemlerine desteği vardır.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 text-center">
+                    <div class="card bg-transparent">
+                        <div class="card-body">
+                            <div class="icon mx-auto rounded-circle d-flex justify-content-center align-items-center"><i
+                                    class="ti ti-lock-open text-white"></i></div>
+                            <h3 class="fs-4 text-white">Ücretsiz</h3>
+                            <p class="fs-7 text-white">Ücret ödemeden programın tüm özelliklerini kullanabilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------------------------------>
+    <!-- Portfolio section End ----->
+    <!------------------------------>
+
+   
+
+    <!------------------------------>
+    <!-----Footer Start------------->
+    <!------------------------------>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-logo-col">
+                        <a href="#"><img src="{% static 'assets/images/logo-footer.png' %}"></a>
+                        <p class="bs-black">Pinoo Atatürk’ün işaret ettiği pozitif bilimin ışığını dünyaya saçmayı
+                            hedefleyen bir Türk girişimidir.</p>
+                        <div class="callus text-white fw-500 fs-7">
+                            <div class="text-black">Tel: <a href="#" class="bs-black" style="text-decoration: none;">
+                                </a>0216 251 1664 - 0532 460 72 30</a></div>
+                            <a href="pinoo@atolyevizyon.com" style="text-decoration: none;"><i
+                                    class="ti ti-mail text-black"></i></a>
+                            <a href="https://www.instagram.com/pinoorobotics/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-instagram text-black"></i></a>
+                            <a href="https://tr.linkedin.com/company/pinoo-robotics-global"
+                                style="text-decoration: none;"><i class="ti ti-brand-linkedin text-black"></i></a>
+                            <a href="https://www.facebook.com/pinooroboticss/" style="text-decoration: none;"><i
+                                    class="ti ti-brand-facebook text-black"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyrights text-center black  fw-500"><a>Designed with by <i
+                    class="ti ti-heart-handshake text-black"></i> Melikşah</a></div>
+        </div>
+        <style>.copy2 { text-align: center; font-size: smaller; margin-top: 10px;}</style>
+        <div class="copy2">Pinoo Bricky modellerin lisansı Pinoo Robotics’e aittir. Baskı alınıp kullanılabilir ancak değiştirilemez veya satışı yapılamaz.</div>
+        <div class="copy">LEGO®, LEGO® logosu, LEGO® Group'un tescilli ticari markasıdır ve bu siteyi desteklemez, onaylamaz veya yetkilendirmez . lego.com adresindeki resmi Lego web sitesini ziyaret edebilirsiniz.</div>
+    </footer>
+    <!------------------------------>
+    <!-------Footer End------------->
+    <!------------------------------>
+
+
+    <!-- Açılır Pencere (Modal) -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-custom">
+      <div class="modal2-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center w-100" id="exampleModalLabel">Doğru Plan İçin Seçimini Yap</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <style>
+            .btn-primary2 {
+              background-color: #2C3E50; /* İstediğiniz arka plan rengi */
+              color: #fff; /* İstediğiniz metin rengi */
+            }
+          
+            .btn-secondary2 {
+              background-color: #fff; /* İstediğiniz arka plan rengi */
+              color: #000; /* İstediğiniz metin rengi */
+            }
+          </style>
+          
+          <div class="modal-body text-center">
+            <a href="{% url 'kids' %}" class="btn btn-primary2" id="button1" onmouseenter="changeButton('button1', 'button2')" onmouseleave="restoreButton('button1', 'button2')">Öğrenciyim</a>
+            <a href="{% url 'teachers' %}" class="btn btn-secondary2" id="button2" onmouseenter="changeButton('button2', 'button1')" onmouseleave="restoreButton('button2', 'button1')">Öğretmenim</a>
+          </div>
+          
+          <script>
+            function changeButton(hoveredButtonId, otherButtonId) {
+              const hoveredButton = document.getElementById(hoveredButtonId);
+              const otherButton = document.getElementById(otherButtonId);
+          
+              hoveredButton.classList.add('btn-secondary2');
+              hoveredButton.classList.remove('btn-primary2');
+          
+              otherButton.classList.add('btn-primary2');
+              otherButton.classList.remove('btn-secondary2');
+            }
+          
+            function restoreButton(buttonId, otherButtonId) {
+              const button = document.getElementById(buttonId);
+              const otherButton = document.getElementById(otherButtonId);
+          
+              button.classList.add('btn-primary2');
+              button.classList.remove('btn-secondary2');
+          
+              otherButton.classList.add('btn-secondary2');
+              otherButton.classList.remove('btn-primary2');
+            }
+          </script>
+          
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="soonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-custom">
+      <div class="modal2-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center w-100" id="exampleModalLabel">Yakında Pinoo Education'da</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <script src="{% static 'dist/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/libs/OwlCarousel-2/dist/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'dist/js/custom.js' %}"></script>
+</body>
+
+</html>
